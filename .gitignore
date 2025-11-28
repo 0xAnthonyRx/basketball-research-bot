@@ -1,0 +1,10 @@
+venv/
+credentials.json
+token.pickle
+*.pyc
+__pycache__/
+.env
+*.log
+token_base64.txt
+credentials_oneline.json
+basketball_research_bot_backup.py

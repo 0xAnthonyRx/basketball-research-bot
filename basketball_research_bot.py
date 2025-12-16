@@ -522,8 +522,8 @@ def search_all_journals(journals_to_sample=None, min_per_journal=5, max_per_jour
     print(f"📊 Unique articles after deduplication: {len(unique_articles)}")
     
     # Randomly select final set for email (max 20 articles per email)
-    if len(unique_articles) > 10:
-        final_articles = random.sample(unique_articles, 10)
+    if len(unique_articles) > 4:
+        final_articles = random.sample(unique_articles, 4)
         print(f"📊 Randomly selected {len(final_articles)} for this digest")
     else:
         final_articles = unique_articles

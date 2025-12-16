@@ -3,13 +3,11 @@ name: Basketball Research Bot
 # Run every Tuesday and Thursday at 11 AM EST
 on:
   schedule:
-    # Tuesday at 11 AM EST (4 PM UTC during standard time, 3 PM UTC during daylight saving)
-    - cron: '0 16 * * 2'  # Standard time (Nov-Mar)
-    - cron: '0 15 * * 2'  # Daylight saving (Mar-Nov)
+    # Tuesday at 11 AM EST (4 PM UTC)
+    - cron: '0 16 * * 2'
     
-    # Thursday at 11 AM EST
-    - cron: '0 16 * * 4'  # Standard time (Nov-Mar)
-    - cron: '0 15 * * 4'  # Daylight saving (Mar-Nov)
+    # Thursday at 11 AM EST (4 PM UTC)
+    - cron: '0 16 * * 4'
   
   # Allow manual trigger
   workflow_dispatch:
@@ -47,19 +45,3 @@ jobs:
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       run: |
         python basketball_research_bot.py
-    
-    - name: Save token.pickle to secrets (for next run)
-      if: always()
-      run: |
-        if [ -f token.pickle ]; then
-          echo "Token file exists, should be updated in secrets manually"
-        fi
-    
-    - name: Upload logs (if any errors)
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: error-logs
-        path: |
-          *.log
-          *.txt
